@@ -23,7 +23,12 @@
                       value="org.hibernate.dialect.MySQL8Dialect"/>
             <property name="hibernate.show_sql"    value="true"/>
             <property name="hibernate.format_sql"  value="true"/>
-
+            <property name="javax.persistence.jdbc.url" 
+          value="${DB_URL}"/>
+<property name="javax.persistence.jdbc.user" 
+          value="${DB_USER}"/>
+<property name="javax.persistence.jdbc.password" 
+          value="${DB_PASSWORD}"/>
             <!--
                 update  → met à jour le schéma sans supprimer les données
                 validate → vérifie que le schéma correspond (production)
