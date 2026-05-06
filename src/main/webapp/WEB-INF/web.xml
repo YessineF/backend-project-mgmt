@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+         https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0"
+         metadata-complete="true">
+
+    <display-name>Gestion Projets API</display-name>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <!-- ══════════════════════════════════════════════════════
+         Listeners
+    ══════════════════════════════════════════════════════ -->
+    <listener>
+        <listener-class>com.gestion.config.AppContextListener</listener-class>
+    </listener>
+
+    <!-- ══════════════════════════════════════════════════════
+         Filtres — ordre garanti : CORS d'abord, JWT ensuite
+    ══════════════════════════════════════════════════════ -->
+    <filter>
+        <filter-name>CorsFilter</filter-name>
+        <filter-class>com.gestion.config.CorsFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CorsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>JwtFilter</filter-name>
+        <filter-class>com.gestion.utils.JwtFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>JwtFilter</filter-name>
+        <url-pattern>/api/*</url-pattern>
+    </filter-mapping>
+
+    <!-- ══════════════════════════════════════════════════════
+         Servlets
+    ══════════════════════════════════════════════════════ -->
+    <servlet>
+        <servlet-name>AuthServlet</servlet-name>
+        <servlet-class>com.gestion.controllers.AuthServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AuthServlet</servlet-name>
+        <url-pattern>/api/auth/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EmployeServlet</servlet-name>
+        <servlet-class>com.gestion.controllers.EmployeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmployeServlet</servlet-name>
+        <url-pattern>/api/employes/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ProjetServlet</servlet-name>
+        <servlet-class>com.gestion.controllers.ProjetServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProjetServlet</servlet-name>
+        <url-pattern>/api/projets/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AffectationServlet</servlet-name>
+        <servlet-class>com.gestion.controllers.AffectationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AffectationServlet</servlet-name>
+        <url-pattern>/api/affectations/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CategorieServlet</servlet-name>
+        <servlet-class>com.gestion.controllers.CategorieServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CategorieServlet</servlet-name>
+        <url-pattern>/api/categories/*</url-pattern>
+    </servlet-mapping>
+
+</web-app>
