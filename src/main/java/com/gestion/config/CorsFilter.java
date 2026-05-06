@@ -22,8 +22,8 @@ public class CorsFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
 
         // ✅ Origine Angular autorisée
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-
+response.setHeader("Access-Control-Allow-Origin", 
+    "https://frontend-project-mgmt.vercel.app");
         // ✅ Méthodes HTTP autorisées
         response.setHeader("Access-Control-Allow-Methods",
                 "GET, POST, PUT, DELETE, OPTIONS");
