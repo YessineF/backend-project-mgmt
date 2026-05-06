@@ -3,7 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
          https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
-         version="6.0">
+         version="6.0"
+         metadata-complete="true">
 
     <display-name>Gestion Projets API</display-name>
 
@@ -15,7 +16,7 @@
         <listener-class>com.gestion.config.AppContextListener</listener-class>
     </listener>
 
-    <!-- ✅ Filtre CORS custom — accepte toutes les origines *.vercel.app -->
+    <!-- CORS en premier -->
     <filter>
         <filter-name>CorsFilter</filter-name>
         <filter-class>com.gestion.config.CorsFilter</filter-class>
@@ -78,6 +79,15 @@
     <servlet-mapping>
         <servlet-name>CategorieServlet</servlet-name>
         <url-pattern>/api/categories/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DashboardServlet</servlet-name>
+        <servlet-class>com.gestion.controllers.DashboardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DashboardServlet</servlet-name>
+        <url-pattern>/api/dashboard/*</url-pattern>
     </servlet-mapping>
 
 </web-app>

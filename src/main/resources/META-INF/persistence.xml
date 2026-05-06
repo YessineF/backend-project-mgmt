@@ -3,36 +3,23 @@
 
     <persistence-unit name="GestionPU" transaction-type="RESOURCE_LOCAL">
 
-        <!-- Entités JPA enregistrées -->
         <class>com.gestion.models.Employe</class>
         <class>com.gestion.models.Projet</class>
         <class>com.gestion.models.Categorie</class>
         <class>com.gestion.models.Affectation</class>
 
         <properties>
-            <!-- Connexion MySQL -->
             <property name="javax.persistence.jdbc.driver"
                       value="com.mysql.cj.jdbc.Driver"/>
+            <!-- Valeurs fallback locales — remplacées par JPAUtil depuis les env vars -->
             <property name="javax.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost:3306/gestion_projets?serverTimezone=UTC"/>
+                      value="jdbc:mysql://localhost:3306/gestion_projets?serverTimezone=UTC&amp;useSSL=false"/>
             <property name="javax.persistence.jdbc.user"     value="root"/>
             <property name="javax.persistence.jdbc.password" value=""/>
 
-            <!-- Hibernate -->
             <property name="hibernate.dialect"
                       value="org.hibernate.dialect.MySQL8Dialect"/>
-            <property name="hibernate.show_sql"    value="true"/>
-            <property name="hibernate.format_sql"  value="true"/>
-            <property name="javax.persistence.jdbc.url" 
-          value="${DB_URL}"/>
-<property name="javax.persistence.jdbc.user" 
-          value="${DB_USER}"/>
-<property name="javax.persistence.jdbc.password" 
-          value="${DB_PASSWORD}"/>
-            <!--
-                update  → met à jour le schéma sans supprimer les données
-                validate → vérifie que le schéma correspond (production)
-            -->
+            <property name="hibernate.show_sql"    value="false"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
 
